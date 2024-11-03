@@ -1,0 +1,6 @@
+switch
+not HC04
+and HC08
+or  HC32
+2 leds and 2 resistors
+power source
