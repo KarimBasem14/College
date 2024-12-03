@@ -3,7 +3,7 @@
 
 
 // C has static arrays, so I'll probably have to store values that I don't need inside my intersection and union arrays
-// I am assuming that those irrelevant values have a value of -1 which means the user shouldn't give me -1
+
 
 void remove_duplicates(int array[], int size, char * text);
 int item_in_array(int item, int array[], int size);
@@ -41,7 +41,6 @@ int main(void){
     // Union
     for (int i = 0; i < size1; i++) {
         union_array[i] = array1[i];
-        // printf("i : %d\n", i);
     }
     for (int i = size1; i < size2 + size1; i++) {
         union_array[i] = array2[i-size1];
@@ -90,12 +89,12 @@ void remove_duplicates(int array[], int size, char * text){
 
     // int removed_duplicates[size];
 
-    // I have to manually initialize the removed_duplicates to zero cause C gives an error if the static array has its size as a variable (size be known at compile)
+    // I have to manually initialize the removed_duplicates to zero cause C gives an error if the static array has its size as a variable (size must be known at compile time)
     for (int i = 0; i < size; i++) {
         removed_duplicates[i] = 0;
     }
 
-    int k = 0;
+    int k = 0; // Tracks how many items are added in removed_duplicates
     int x = 0; // This variable is used to enter the else if only once.
 
     for (int i = 0; i < size; i++){
@@ -135,6 +134,7 @@ int item_in_array(int item, int array[], int size) {
     // Very wierd error idk buuuuuuuuuuut
     // I had const int size = sizeof(array) / sizeof(int) and for whatever reason that gave me a size of 2?????????????????
     // Passing size as a parameter seemed to fix it somehow!!!!
+    // Update from TA: This is a known behaviour in C, it is just how C works, if you pass an array to a function you just can't get its size 
 
     for (int i = 0; i < size; i++) {
         if (item == array[i]) {
